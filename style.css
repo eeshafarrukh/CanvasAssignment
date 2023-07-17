@@ -1,0 +1,59 @@
+.myCanvas{
+    border:1px solid #d3d3d3;
+}
+
+.navbar-brand {
+
+
+  
+    font-size: 2.25rem;
+    line-height: inherit;
+
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 5px;
+    padding-bottom:10px;
+}
+.footer {
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-size: 21px;
+    padding:10px;
+ }
+ .container-fluid p{
+    font-size:21px;
+    color:white;
+ }
+.c1{
+
+    text-align: center;
+    position: relative;
+ 
+}
+.Dbutton{
+    justify-content: center;
+    text-align: center;
+  
+}
+
+#mycanvas{
+ 
+    justify-content: center;
+}
+#canvas-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #000;
+}

@@ -1,0 +1,152 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+      <title>A2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/56eee3d209.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="style.css" rel="stylesheet">
+        <div class="main">
+            
+              <nav class="navbar bg-dark text-grey text-center">
+                <div class="container-fluid">
+                    <p id="header-text">Canvas</p>
+                </div>
+              </nav>
+              <div class="c1">
+              <div class="container mt-0">
+                <div class="form-group">
+                    <label for="image-url">Choose your image:</label>
+
+                    <input type="file" class="form-control" id="imageInput" placeholder="Enter image URL">
+                </div>
+        
+                <div class="form-group">
+                    <label for="canvas-text-input">Text for Canvas:</label>
+                    <input type="text" class="form-control" id="canvas-text-input" placeholder="Enter text for canvas">
+                </div>
+        
+                <div class="form-group">
+                    <label for="header-text-input">Header Text:</label>
+                    <input type="text" class="form-control" id="header-text-input" placeholder="Enter header text">
+                </div>
+        
+                <div class="form-group ">
+                    <label for="footer-text-input">Footer Text:</label>
+                    <input type="text" class="form-control" id="footer-text-input" placeholder="Enter footer text">
+                </div>
+        
+                <button id="download-button" class="btn btn-success">Download Image</button>
+              </div>
+              <div id="canvas-container" class="mb-5 mt-3">
+                <canvas id="myCanvas" width="300" height="300" style="border:1px solid grey;">
+                </canvas>
+                <div id="canvasText"></div>
+              </div>
+            
+             
+
+          
+               
+            </div>
+          </div>
+           
+           
+                
+            <footer class="footer bg-dark text-grey text-center">
+              <div class="container">
+                  <p id="footer-text">Canvas</p>
+              </div>
+          </footer>
+          
+      
+        </div>
+        <script>
+            var headerInput= document.getElementById("header-text-input");
+            var footerInput= document.getElementById("footer-text-input");
+            
+            function updateHeader(){
+              var headerText=headerInput.value;
+              var header= document.getElementById("header-text");
+              header.textContent=headerText;
+        
+            }
+            function updateFooter(){
+              var footerText=footerInput.value;
+              var footer= document.getElementById("footer-text");
+              footer.textContent=footerText;
+        
+            }
+            headerInput.addEventListener("input",updateHeader);
+            footerInput.addEventListener("input",updateFooter);
+            var imgSrc=document.getElementById("image-url");
+            window.addEventListener('DOMContentLoaded', () => {
+              const canvas = document.getElementById('myCanvas');
+              const ctx = canvas.getContext('2d');
+              const textInput = document.getElementById('canvas-text-input');
+              const imageInput = document.getElementById('imageInput');
+              const downloadButton = document.getElementById('download-button');
+
+              downloadButton.addEventListener('click', () => {
+                const text = textInput.value;
+                const imageFile = imageInput.files[0];
+                
+                if (imageFile && text) {
+                  const reader = new FileReader();
+                  reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                      canvas.width = img.width;
+                      canvas.height = img.height;
+                      ctx.drawImage(img, 0, 0);
+                      ctx.font = '50px Arial';
+                      ctx.fillText(text, 10, 30);
+                      
+                      const dataURL = canvas.toDataURL('image/png');
+                      const link = document.createElement('a');
+                      link.href = dataURL;
+                      link.download = 'canvasImage.png';
+                      link.click();
+                    };
+                    img.src = e.target.result;
+                  };
+                  reader.readAsDataURL(imageFile);
+                }
+              });
+            });
+              
+            
+              
+          
+         
+          
+
+        </script>
+    </body>
+</html>
